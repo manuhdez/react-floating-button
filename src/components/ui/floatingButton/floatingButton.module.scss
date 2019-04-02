@@ -1,0 +1,21 @@
+.button {
+    position: fixed;
+    padding: 15px 20px;
+    background-color: rgb(43, 206, 152);
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    outline: none;
+    &:hover {
+        box-shadow: 0 0 10px 0px rgba(0,0,0,0.2);
+    }
+    &:active {
+        box-shadow: 0 0 15px 0px rgba(0,0,0,0.5);
+    }
+}
