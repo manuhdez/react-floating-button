@@ -7,18 +7,18 @@ const floatingButton = (props) => {
   const [rightMargin, setRightMargin] = useState(40);
   // const [startClick, setStartClick] = useState({});
 
-  const getDistanceToCenter = (e) => {
+  const getDistanceToCenter = (e, buttonSize) => {
+    const buttonLeftMargin = e.pageX - e.target.offsetLeft;
+    const buttonTopMargin = e.pageY - e.target.offsetTop;
+
     return {
-      left: e.pageX - e.target.offsetLeft,
-      top: e.pageY - e.target.offsetTop,
+      left: buttonSize.width - buttonLeftMargin,
+      top: buttonSize.height - buttonTopMargin,
     };
   }
 
   const onButtonDownHandler = (e) => {
-    e.persist();
-    console.log(e);
     setIsMouseDown(true);
-    // setStartClick({x: e.pageX, y: e.pageY});
   };
 
   const onButtonMoveHandler = (e) => {
@@ -27,9 +27,9 @@ const floatingButton = (props) => {
     const mousePosition = {x: e.pageX, y: e.pageY};
     const buttonSize = {width: e.target.offsetWidth, height: e.target.offsetHeight};
 
-    const { left, top } = getDistanceToCenter(e);
-    setBottomMargin(window.innerHeight - mousePosition.y - (buttonSize.height / 2));
-    setRightMargin(window.innerWidth - mousePosition.x - (buttonSize.width / 2));
+    const { left, top } = getDistanceToCenter(e, buttonSize);
+    setBottomMargin(window.innerHeight - mousePosition.y - (buttonSize.height / 2) - top);
+    setRightMargin(window.innerWidth - mousePosition.x - (buttonSize.width / 2) - left);
   };
 
   const onButtonUpHandler = () => {
